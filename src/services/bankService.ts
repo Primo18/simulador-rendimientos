@@ -1,4 +1,4 @@
-import Bank from '../models/bank.js';
+import { Bank } from '../models/bank.js';
 
 class BankService {
     async getAllBanks() {

@@ -1,11 +1,11 @@
 import { Table, Column, Model, DataType, ForeignKey, BelongsTo } from 'sequelize-typescript';
-import User from './user.js';
+import { User } from './user.js';
 
 @Table({
     tableName: 'Logs',
     timestamps: true,
 })
-class Log extends Model {
+export class Log extends Model {
     @Column({
         type: DataType.STRING,
         allowNull: false,
@@ -20,7 +20,7 @@ class Log extends Model {
     userId!: number;
 
     @BelongsTo(() => User)
-    user!: User;
+    user!: User | null;
 
     @Column({
         type: DataType.TEXT,
@@ -34,5 +34,3 @@ class Log extends Model {
     })
     newData?: string;
 }
-
-export default Log;

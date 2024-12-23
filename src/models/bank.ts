@@ -1,11 +1,11 @@
 import { Table, Column, Model, DataType, HasMany } from 'sequelize-typescript';
-import InterestRate from './interestRate.js';
+import { InterestRate } from './interestRate.js';
 
 @Table({
     tableName: 'Banks',
     timestamps: true,
 })
-class Bank extends Model {
+export class Bank extends Model {
     @Column({
         type: DataType.STRING,
         allowNull: false,
@@ -25,7 +25,5 @@ class Bank extends Model {
     contact!: string;
 
     @HasMany(() => InterestRate)
-    interestRates!: InterestRate[];
+    interestRates!: InterestRate | null;
 }
-
-export default Bank;

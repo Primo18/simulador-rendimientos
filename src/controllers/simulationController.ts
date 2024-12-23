@@ -16,6 +16,7 @@ export const simulateSavings = async (req: Request, res: Response): Promise<void
             bankId,
             principal,
             years,
+            annualPercentage: result.annualPercentage,
             earnings: result.earnings,
             finalAmount: result.finalAmount,
         });

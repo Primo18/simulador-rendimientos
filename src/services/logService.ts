@@ -1,4 +1,4 @@
-import Log from '../models/log.js';
+import { Log } from '../models/log.js';
 
 class LogService {
     async createLog(action: string, userId: number, previousData?: object, newData?: object) {

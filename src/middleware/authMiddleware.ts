@@ -1,5 +1,4 @@
 import { Request, Response, NextFunction } from 'express';
-import jwt from 'jsonwebtoken';
 import { verifyToken } from '../utils/jwtHelper.js';
 
 export const authenticate = (req: Request, res: Response, next: NextFunction): void => {

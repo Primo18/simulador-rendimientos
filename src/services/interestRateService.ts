@@ -1,4 +1,4 @@
-import InterestRate from '../models/interestRate.js';
+import { InterestRate } from '../models/interestRate.js';
 
 class InterestRateService {
     async getAllInterestRates() {

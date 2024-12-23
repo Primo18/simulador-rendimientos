@@ -1,11 +1,11 @@
 import { Table, Column, Model, DataType, HasMany } from 'sequelize-typescript';
-import Log from './log.js';
+import { Log } from './log.js';
 
 @Table({
     tableName: 'Users',
     timestamps: true,
 })
-class User extends Model {
+export class User extends Model {
     @Column({
         type: DataType.STRING,
         allowNull: false,
@@ -26,8 +26,6 @@ class User extends Model {
     })
     role!: 'USER' | 'ADMIN';
 
-    @HasMany(() => Log)
-    logs!: Log[];
+    @HasMany(() => Log, { foreignKey: 'userId' })
+    logs!: Log[] | null;
 }
-
-export default User;

@@ -1,7 +1,7 @@
-import sequelize from '../database/index.js';
-import User from '../models/user.js';
-import Bank from '../models/bank.js';
-import InterestRate from '../models/interestRate.js';
+import { sequelize } from '../database/index.js';
+import { User } from '../models/user.js';
+import { Bank } from '../models/bank.js';
+import { InterestRate } from '../models/interestRate.js';
 import bcrypt from 'bcrypt';
 
 const seedDatabase = async () => {

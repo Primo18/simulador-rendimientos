@@ -1,28 +1,20 @@
-import {
-    Table,
-    Column,
-    Model,
-    DataType,
-    ForeignKey,
-    BelongsTo,
-    Sequelize,
-} from 'sequelize-typescript';
-import Bank from './bank.js';
+import { Table, Column, Model, DataType, ForeignKey, BelongsTo } from 'sequelize-typescript';
+import { Bank } from './bank.js';
 
 @Table({
     tableName: 'InterestRates',
     timestamps: true,
 })
-class InterestRate extends Model {
-    @ForeignKey(() => Bank) // Función diferida para evitar dependencias circulares
+export class InterestRate extends Model {
+    @ForeignKey(() => Bank)
     @Column({
         type: DataType.INTEGER,
         allowNull: false,
     })
     bankId!: number;
 
-    @BelongsTo(() => Bank) // Función diferida
-    bank!: Bank;
+    @BelongsTo(() => Bank)
+    bank!: Bank | null;
 
     @Column({
         type: DataType.FLOAT,
@@ -33,9 +25,7 @@ class InterestRate extends Model {
     @Column({
         type: DataType.DATE,
         allowNull: false,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+        defaultValue: DataType.NOW,
     })
     lastModified!: Date;
 }
-
-export default InterestRate;

@@ -34,10 +34,18 @@ export const updateBank = async (req: Request, res: Response) => {
     try {
         const bank = await BankService.updateBank(Number(req.params.id), req.body);
 
+        // Obtener el userId del usuario autenticado
+        const userId = req.body.user?.id;
+        console.log('userId:', userId);
+
+        if (!userId) {
+            throw new Error('User ID not found in request');
+        }
+
         // Registrar el log
         await LogService.createLog(
             'UPDATE_BANK',
-            req.body.user.id,
+            userId,
             { name: bank.previous('name'), address: bank.previous('address'), contact: bank.previous('contact') },
             req.body
         );

@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 import express from 'express';
-import sequelize from './database/index.js';
+import { sequelize } from './database/index.js';
 import { serverConfig } from './config/env.js';
 import routes from './routes/index.js';
 import swaggerUi from 'swagger-ui-express';
@@ -26,7 +26,7 @@ const startServer = async () => {
         await sequelize.authenticate();
         console.log('Conexión a la base de datos exitosa');
 
-        await sequelize.sync({ alter: true });
+        await sequelize.sync({ alter: false });
         console.log('Modelos sincronizados con la base de datos');
 
         app.listen(serverConfig.port, () => {

@@ -8,7 +8,7 @@ describe('Authentication and Authorization', () => {
     it('should login successfully and return a token', async () => {
         const response = await request(app).post('/api/users/login').send({
             username: 'admin',
-            password: 'password123',
+            password: 'admin123',
         });
         expect(response.status).toBe(200);
         expect(response.body).toHaveProperty('token');

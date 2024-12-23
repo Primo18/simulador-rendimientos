@@ -61,7 +61,7 @@ src/
 ├── models/           # Definición de modelos con Sequelize
 ├── routes/           # Definición de rutas de la API
 ├── services/         # Lógica del negocio
-├── tests/            # Servidor de prueba
+├── __tests__/        # Servidor de prueba y tests
 ├── seeds/            # Script para poblar datos iniciales
 ├── utils/            # Utilidades (helpers)
 ├── config/           # Configuraciones (Swagger, etc.)
@@ -89,6 +89,7 @@ http://localhost:3000/api-docs
 
 #### **Usuarios**
 - **POST /api/users/login**: Iniciar sesión y obtener un token JWT.
+- **POST /api/users/register**: Registrar un nuevo usuario.
 
 #### **Bancos**
 - **GET /api/banks**: Obtener todos los bancos.
@@ -100,6 +101,9 @@ http://localhost:3000/api-docs
 #### **Tasas de Interés**
 - **GET /api/interest-rates**: Obtener todas las tasas de interés.
 - **POST /api/interest-rates**: Crear una nueva tasa de interés.
+- **GET /api/interest-rates/{id}**: Obtener una tasa de interés por ID.
+- **PUT /api/interest-rates/{id}**: Actualizar una tasa de interés por ID.
+- **DELETE /api/interest-rates/{id}**: Eliminar una tasa de interés por ID.
 
 #### **Simulación**
 - **POST /api/simulation/simulate**: Simular rendimientos financieros.
@@ -111,50 +115,7 @@ http://localhost:3000/api-docs
 
 ## **Modelo MER de la Base de Datos**
 
-El modelo MER de la base de datos se muestra a continuación:
-
-```mermaid
-erDiagram
-    Users {
-        INTEGER id PK
-        STRING username UNIQUE
-        STRING password
-        ENUM role "USER, ADMIN"
-        TIMESTAMP createdAt
-        TIMESTAMP updatedAt
-    }
-
-    Logs {
-        INTEGER id PK
-        STRING action
-        INTEGER userId FK
-        TEXT previousData
-        TEXT newData
-        TIMESTAMP createdAt
-        TIMESTAMP updatedAt
-    }
-
-    Banks {
-        INTEGER id PK
-        STRING name
-        STRING address
-        STRING contact
-        TIMESTAMP createdAt
-        TIMESTAMP updatedAt
-    }
-
-    InterestRates {
-        INTEGER id PK
-        INTEGER bankId FK
-        FLOAT annualPercentage
-        DATE lastModified
-        TIMESTAMP createdAt
-        TIMESTAMP updatedAt
-    }
-
-    Users ||--o{ Logs : "has many"
-    Banks ||--o{ InterestRates : "has many"
-```
+[![](https://mermaid.ink/img/pako:eNqtU0FuwjAQ_IrlM3wgt1aoEmoroVZcqly28SZYxN5ovS5FkL_XaaAE0kNR8cXambE9s7Z3uiCDOtPIMwsVg8u9SmMZkIPa9UU3rBeskJU1avF4goOw9ZWKSe7BoVqOuQZC2BCbEcFU4wkU6zAIuEYVjCBo7uQ3MjZmSLb99ETVFW6hEEt-rO5SzI16GKwQ_BTVMH5YimEGAheUx80F-p8Y9-DXV-ToOj4OZwxjCCO8IC8p-I2czpOxdIy8JO4vjo_we0p40eKyJhAF3keoF8gFJp_VIFd3vKohyDMZW1o0N4rQP_H9fjqlXf-AMpXrFQTlwG9zPbySg-o89blcT7RDdmBN-k3fDcm1rDDdkO6EBnjd7dkmHUSh160vdCYccaKZYrXSWQl1SFXv9vAbf9AG_BvRsW6_APc8KUw?type=png)](https://mermaid.live/edit#pako:eNqtU0FuwjAQ_IrlM3wgt1aoEmoroVZcqly28SZYxN5ovS5FkL_XaaAE0kNR8cXambE9s7Z3uiCDOtPIMwsVg8u9SmMZkIPa9UU3rBeskJU1avF4goOw9ZWKSe7BoVqOuQZC2BCbEcFU4wkU6zAIuEYVjCBo7uQ3MjZmSLb99ETVFW6hEEt-rO5SzI16GKwQ_BTVMH5YimEGAheUx80F-p8Y9-DXV-ToOj4OZwxjCCO8IC8p-I2czpOxdIy8JO4vjo_we0p40eKyJhAF3keoF8gFJp_VIFd3vKohyDMZW1o0N4rQP_H9fjqlXf-AMpXrFQTlwG9zPbySg-o89blcT7RDdmBN-k3fDcm1rDDdkO6EBnjd7dkmHUSh160vdCYccaKZYrXSWQl1SFXv9vAbf9AG_BvRsW6_APc8KUw)
 
 ---
 
@@ -204,17 +165,5 @@ El proyecto incluye datos iniciales:
 
 Ejecuta el seed para poblar estos datos:
 ```bash
-pnpm tsx src/seeds/seed.ts
+pnpm seed
 ```
-
----
-
-## **Soporte y Contribución**
-
-Si encuentras problemas o deseas contribuir:
-
-1. Crea un issue en el repositorio.
-2. Envía un pull request con mejoras o correcciones.
-
-¡Gracias por usar el Simulador de Rendimientos API! 🚀
-
