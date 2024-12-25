@@ -16,7 +16,7 @@ Este proyecto es un backend desarrollado en **Node.js** utilizando **Express** y
 
 1. **Clonar el Repositorio:**
    ```bash
-   git clone https://github.com/tu-repo/simulador-rendimientos.git
+   git clone https://github.com/Primo18/simulador-rendimientos.git
    cd simulador-rendimientos
    ```
 
@@ -29,24 +29,26 @@ Este proyecto es un backend desarrollado en **Node.js** utilizando **Express** y
    Crea un archivo `.env` en la raíz del proyecto con los siguientes valores:
 
    ```env
-   DB_HOST=localhost
-   DB_PORT=3306
-   DB_DATABASE=simulador
-   DB_USERNAME=root
-   DB_PASSWORD=tu-contraseña
-   JWT_SECRET=clave-secreta
+   DATABASE_HOST=localhost
+   DATABASE_USER=root
+   DATABASE_PASSWORD=root
+   DATABASE_NAME=simulador
+
    PORT=3000
+   JWT_SECRET=secret
+   JWT_EXPIRES_IN=3h
    ```
 
 4. **Inicializar la Base de Datos:**
    Ejecuta el script de seeds para poblar la base de datos con datos iniciales:
    ```bash
+   # Crear la base de datos manualmente en MySQL con el nombre especificado en el archivo .env (DATABASE_NAME) antes de ejecutar el seed. Por defecto: simulador.
    pnpm seed
    ```
 
 5. **Iniciar el Servidor:**
    ```bash
-   pnpm start
+   pnpm dev
    ```
    El servidor se iniciará en: `http://localhost:3000`
 
@@ -61,7 +63,6 @@ src/
 ├── models/           # Definición de modelos con Sequelize
 ├── routes/           # Definición de rutas de la API
 ├── services/         # Lógica del negocio
-├── __tests__/        # Servidor de prueba y tests
 ├── seeds/            # Script para poblar datos iniciales
 ├── utils/            # Utilidades (helpers)
 ├── config/           # Configuraciones (Swagger, etc.)
@@ -72,7 +73,6 @@ src/
 - **`models`**: Define la estructura de las tablas y relaciones con Sequelize.
 - **`services`**: Contiene la lógica del negocio.
 - **`routes`**: Define las rutas de la API.
-- **`tests`**: Archivos de prueba para endpoints y servicios.
 - **`seeds`**: Crea datos iniciales para la base de datos.
 
 ---
@@ -84,6 +84,7 @@ La documentación interactiva de la API está disponible en:
 ```
 http://localhost:3000/api-docs
 ```
+![Swagger UI](./api_docs_swagger.jpeg)
 
 ### **Rutas Principales**
 
@@ -116,32 +117,6 @@ http://localhost:3000/api-docs
 ## **Modelo MER de la Base de Datos**
 
 [![](https://mermaid.ink/img/pako:eNqtU0FuwjAQ_IrlM3wgt1aoEmoroVZcqly28SZYxN5ovS5FkL_XaaAE0kNR8cXambE9s7Z3uiCDOtPIMwsVg8u9SmMZkIPa9UU3rBeskJU1avF4goOw9ZWKSe7BoVqOuQZC2BCbEcFU4wkU6zAIuEYVjCBo7uQ3MjZmSLb99ETVFW6hEEt-rO5SzI16GKwQ_BTVMH5YimEGAheUx80F-p8Y9-DXV-ToOj4OZwxjCCO8IC8p-I2czpOxdIy8JO4vjo_we0p40eKyJhAF3keoF8gFJp_VIFd3vKohyDMZW1o0N4rQP_H9fjqlXf-AMpXrFQTlwG9zPbySg-o89blcT7RDdmBN-k3fDcm1rDDdkO6EBnjd7dkmHUSh160vdCYccaKZYrXSWQl1SFXv9vAbf9AG_BvRsW6_APc8KUw?type=png)](https://mermaid.live/edit#pako:eNqtU0FuwjAQ_IrlM3wgt1aoEmoroVZcqly28SZYxN5ovS5FkL_XaaAE0kNR8cXambE9s7Z3uiCDOtPIMwsVg8u9SmMZkIPa9UU3rBeskJU1avF4goOw9ZWKSe7BoVqOuQZC2BCbEcFU4wkU6zAIuEYVjCBo7uQ3MjZmSLb99ETVFW6hEEt-rO5SzI16GKwQ_BTVMH5YimEGAheUx80F-p8Y9-DXV-ToOj4OZwxjCCO8IC8p-I2czpOxdIy8JO4vjo_we0p40eKyJhAF3keoF8gFJp_VIFd3vKohyDMZW1o0N4rQP_H9fjqlXf-AMpXrFQTlwG9zPbySg-o89blcT7RDdmBN-k3fDcm1rDDdkO6EBnjd7dkmHUSh160vdCYccaKZYrXSWQl1SFXv9vAbf9AG_BvRsW6_APc8KUw)
-
----
-
-## **Testing**
-
-Las pruebas se realizan con **Jest** y **Supertest**.
-
-### **Ejecutar las Pruebas**
-
-1. Ejecuta las pruebas:
-   ```bash
-   pnpm test
-   ```
-
-2. Verifica la cobertura de código:
-   ```bash
-   pnpm test --coverage
-   ```
-
-### **Pruebas Incluidas**
-
-- **Usuarios**: Inicio de sesión y validación de credenciales.
-- **Bancos**: CRUD completo (creación, lectura, actualización y eliminación).
-- **Tasas de Interés**: Creación y obtención.
-- **Simulaciones**: Pruebas de cálculo de rendimientos.
-- **Autenticación**: Validación de rutas protegidas.
 
 ---
 

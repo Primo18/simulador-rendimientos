@@ -423,6 +423,27 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "getLogs",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/logs/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"logs",
+						""
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"auth": {
@@ -430,7 +451,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTczNDk4NTI2NywiZXhwIjoxNzM0OTk2MDY3fQ.Os6FPR7YG5NbRDfcRZ_IjmILM14tFtn4nEDn4DSkvPY",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTczNTEzOTgxNywiZXhwIjoxNzM1MTUwNjE3fQ.c4_UJhgycnjv7F710w8GGh9pZpvR3og81JACdjtT0B8",
 				"type": "string"
 			}
 		]
