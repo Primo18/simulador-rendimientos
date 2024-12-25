@@ -30,8 +30,8 @@ Este proyecto es un backend desarrollado en **Node.js** utilizando **Express** y
 
    ```env
    DATABASE_HOST=localhost
-   DATABASE_USER=root
-   DATABASE_PASSWORD=root
+   DATABASE_USER=root      # Cambiar por el usuario de MySQL de tu sistema
+   DATABASE_PASSWORD=root  # Cambiar por la contraseña de MySQL de tu sistema
    DATABASE_NAME=simulador
 
    PORT=3000
